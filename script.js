@@ -44,15 +44,13 @@
             margin: 0;
             height: 100vh;
             width: 100vw;
-            background: #151515;
             overflow: hidden; /* Prevents scrolling if content is larger than viewport */
         }
         .container {
             position: absolute;
-            height: calc(100% - 20px);
-            width: calc(100% - 20px);
-            background: #202020;
-            border-radius: 5px;
+            height: 100%;
+            width: 100%;
+            background: #13181f;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -65,7 +63,7 @@
             width: calc(100% - 20px);
             font-family: 'JetBrainsMono Nerd Font';
             font-size: 1.3em;
-            background: #303030;
+            background: #ffffff10;
             border-radius: 5px;
             border: none;
             padding: 5px 20px;
@@ -74,7 +72,7 @@
             position: relative;
             margin-top:50px;
             width: 200px;
-            background: #303030;
+            background: #ffffff10;
             height: calc(100% - 50px);
             border-radius: 5px;
             overflow: hidden;
@@ -83,7 +81,7 @@
             position: relative;
             width: 100%;
             height: 30px;
-            background: #404040;
+            background: #ffffff15;
             border-radius:5px;
         }
         #parentDirLinkBox a{
@@ -132,7 +130,7 @@
             width: 400px;
         }
         .table tbody tr:hover{
-            background: #505050;
+            background: #ffffff20;
         }
         .resizer{
             margin-top:50px;
@@ -145,7 +143,7 @@
             margin-top:50px;
             flex: 1;
             left: 0;
-            background: #303030;
+            background: #ffffff10;
             height: calc(100% - 50px);
             border-radius: 5px;
             overflow: hidden;
@@ -155,7 +153,7 @@
             text-transform: uppercase;
             font-family: arial;
             font-weight: bold;
-            color: #404040;
+            color: #ffffff10;
         }
     `;
     style.textContent = css;
@@ -333,7 +331,20 @@
                 imageViewer.style.border = 'solid 5px #444'
                 imageViewer.style.borderRadius = '10px'
                 main.appendChild(imageViewer);
-                imageViewer.play();
+            }
+
+
+            // check if file is pdf
+            if (fileUrl.endsWith('.pdf')) {
+                event.preventDefault();
+                main.innerHTML = '';
+                const pdfViewer = document.createElement('embed');
+                pdfViewer.src = fileUrl;
+                pdfViewer.type = 'application/pdf';
+                pdfViewer.style.width = 'calc(100% - 5px)';
+                pdfViewer.style.height = 'calc(100% - 5px)';
+                pdfViewer.style.borderRadius = '4px';
+                main.appendChild(pdfViewer);
             }
 
 
